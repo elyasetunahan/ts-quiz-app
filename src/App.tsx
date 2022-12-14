@@ -42,21 +42,21 @@ const App = () => {
 
       const correct = questions[number].correct_answer === answer;
 
-      if (correct) setScore((prev) => prev + 1)
+      if (correct) setScore((prev) => prev + 1);
 
       const answerObject = {
         question: questions[number].question,
         answer,
         correct,
         correctAnswer: questions[number].correct_answer,
-      }
-      setUserAnswers((prev) => [...prev, answerObject])
+      };
+      setUserAnswers((prev) => [...prev, answerObject]);
     }
   };
 
   const nextQuestion = () => {
     const nextQuestionNumber = number + 1;
-    
+
     if (nextQuestionNumber === TOTAL_QUESTIONS) {
       setGameOver(true);
     } else {
@@ -68,34 +68,34 @@ const App = () => {
     <>
       <GlobalStyle />
       <Wrapper>
-      <h1>React Quiz with TS</h1>
-      {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
-        <button className="start" onClick={startQuiz}>
-          Start
-        </button>
-      ) : null}
+        <h1>React Quiz with TS</h1>
+        {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
+          <button className="start" onClick={startQuiz}>
+            Start
+          </button>
+        ) : null}
 
-      {!gameOver ? <div className="score">Score: {score}</div> : null}
-      {loading ? <p>Loading</p> : null}
-      {!loading && !gameOver && (
-        <QuestionCard
-          question={questions[number].question}
-          answers={questions[number].answers}
-          callback={checkAnswers}
-          userAnswer={userAnswers ? userAnswers[number] : undefined}
-          questionNumber={number + 1}
-          totalQuestions={TOTAL_QUESTIONS}
-        />
-      )}
+        {!gameOver ? <div className="score">Score: {score}</div> : null}
+        {loading ? <p>Loading</p> : null}
+        {!loading && !gameOver && (
+          <QuestionCard
+            question={questions[number].question}
+            answers={questions[number].answers}
+            callback={checkAnswers}
+            userAnswer={userAnswers ? userAnswers[number] : undefined}
+            questionNumber={number + 1}
+            totalQuestions={TOTAL_QUESTIONS}
+          />
+        )}
 
-      {!gameOver &&
-      !loading &&
-      userAnswers.length === number + 1 &&
-      number !== TOTAL_QUESTIONS - 1 ? (
-        <button className="nextQuestion" onClick={nextQuestion}>
-          Next Question
-        </button>
-      ) : null}
+        {!gameOver &&
+        !loading &&
+        userAnswers.length === number + 1 &&
+        number !== TOTAL_QUESTIONS - 1 ? (
+          <button className="nextQuestion" onClick={nextQuestion}>
+            Next Question
+          </button>
+        ) : null}
       </Wrapper>
     </>
   );

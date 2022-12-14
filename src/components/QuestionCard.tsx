@@ -21,25 +21,25 @@ const QuestionCard: React.FC<Props> = ({
 }) => {
   return (
     <Wrapper>
-        <p className="number">
-            Question: {questionNumber} / {totalQuestions}
-            <p>{question}</p>
-        </p>
-        <div>
-            {answers?.map((answer) => (
-                <ButtonWrapper 
-                key={answer}
-                correct={userAnswer?.correctAnswer === answer}
-                userClicked={userAnswer?.answer === answer}
-                >
-                    <button disabled={!!userAnswer} value={answer} onClick={callback}>
-                        <span>{answer}</span>
-                    </button>
-                </ButtonWrapper>
-            ))}
-        </div>
+      <p className="number">
+        Question: {questionNumber} / {totalQuestions}
+        <p>{question}</p>
+      </p>
+      <div>
+        {answers?.map((answer) => (
+          <ButtonWrapper
+            key={answer}
+            correct={userAnswer?.correctAnswer === answer}
+            userClicked={userAnswer?.answer === answer}
+          >
+            <button disabled={!!userAnswer} value={answer} onClick={callback}>
+              <span>{answer}</span>
+            </button>
+          </ButtonWrapper>
+        ))}
+      </div>
     </Wrapper>
-    );
+  );
 };
 
 export default QuestionCard;
